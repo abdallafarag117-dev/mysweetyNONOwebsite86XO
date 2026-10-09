@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- build: v11 (monthiversary, hint, captions, optimised media) -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 18th Birthday Gannah ✨</title>
+    <meta name="description" content="A cinematic birthday surprise for the most special person">
+    <link href="fonts/fonts.css?v=8" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css?v=11">
+</head>
+<body>
+
+<!-- Custom Cursor -->
+<div id="custom-cursor"><img src="pepsi-cursor.png" alt="" width="64" height="64"></div>
+<div id="cursor-trail"></div>
+
+<!-- Oneko Cat -->
+<div id="oneko" aria-hidden="true"></div>
+
+<!-- =================== PASSWORD PAGE =================== -->
+<div id="password-page">
+    <canvas id="particle-canvas"></canvas>
+    <div class="password-content">
+        <div class="lock-icon">
+            <svg viewBox="0 0 64 80" width="64" height="80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="8" y="32" width="48" height="40" rx="8" stroke="url(#lockGrad)" stroke-width="2.5" class="lock-body"/>
+                <path d="M20 32V24C20 17.373 25.373 12 32 12C38.627 12 44 17.373 44 24V32" stroke="url(#lockGrad)" stroke-width="2.5" stroke-linecap="round" class="lock-shackle"/>
+                <circle cx="32" cy="50" r="4" fill="url(#lockGrad)" class="lock-hole"/>
+                <line x1="32" y1="54" x2="32" y2="62" stroke="url(#lockGrad)" stroke-width="2.5" stroke-linecap="round" class="lock-hole"/>
+                <defs>
+                    <linearGradient id="lockGrad" x1="0" y1="0" x2="64" y2="80">
+                        <stop offset="0%" stop-color="#d85a85"/>
+                        <stop offset="50%" stop-color="#c97a70"/>
+                        <stop offset="100%" stop-color="#a81546"/>
+                    </linearGradient>
+                </defs>
+            </svg>
+        </div>
+        <p class="password-subtitle">This page is made for the most loving girl!</p>
+        <div class="password-input-wrap">
+            <input type="password" id="password-input" placeholder="Enter The Password" autocomplete="off" spellcheck="false">
+        </div>
+        <p class="password-error" id="password-error">That's not it... try again</p>
+    </div>
+    <div id="white-flash"></div>
+</div>
+
+<!-- Flying Roses Animation Overlay -->
+<canvas id="rose-canvas" style="display:none;position:fixed;inset:0;width:100%;height:100%;z-index:9999;pointer-events:none;"></canvas>
+
+<!-- =================== MAIN CONTENT =================== -->
+<div id="main-content" style="display:none;">
+
+    <!-- Floating floral background -->
+    <div class="floral-bg" aria-hidden="true">
+        <div class="floral-layer floral-layer-1"></div>
+        <div class="floral-layer floral-layer-2"></div>
+        <canvas id="bg-petal-canvas"></canvas>
+    </div>
+
+    <!-- Tab Navigation -->
+    <nav id="tab-nav">
+        <div class="nav-inner">
+            <div class="nav-logo">🌸 Gannah's 18th 🌸</div>
+            <div class="tabs-wrap">
+                <button class="tab-btn active" data-tab="cake">
+                    <span class="tab-icon">🎂</span>
+                    <span class="tab-label">Birthday Cake</span>
+                </button>
+                <button class="tab-btn" data-tab="letter">
+                    <span class="tab-icon">💌</span>
+                    <span class="tab-label">Letter for You</span>
+                </button>
+                <button class="tab-btn" data-tab="flowers">
+                    <span class="tab-icon">🌺</span>
+                    <span class="tab-label">ليكي يا مولاتي</span>
+                </button>
+                <button class="tab-btn" data-tab="songs">
+                    <span class="tab-icon">🎵</span>
+                    <span class="tab-label">Our Songs</span>
+                </button>
+                <button class="tab-btn" data-tab="gallery">
+                    <span class="tab-icon">📸</span>
+                    <span class="tab-label">Best Smile Gallery</span>
+                </button>
+                <button class="tab-btn" data-tab="ring">
+                    <span class="tab-icon">💍</span>
+                    <span class="tab-label">The Sign</span>
+                </button>
+                <button class="tab-btn" data-tab="favourites">
+                    <span class="tab-icon">🍟</span>
+                    <span class="tab-label">My Darling's Favourites</span>
+                </button>
+            </div>
+            <button id="menu-toggle" aria-label="Menu">☰</button>
+        </div>
+    </nav>
+
+    <!-- Mobile nav drawer -->
+    <div id="mobile-nav">
+        <button class="tab-btn active" data-tab="cake">🎂 Birthday Cake</button>
+        <button class="tab-btn" data-tab="letter">💌 Letter for You</button>
+        <button class="tab-btn" data-tab="flowers">🌺 ليكي يا مولاتي</button>
+        <button class="tab-btn" data-tab="songs">🎵 Our Songs</button>
+        <button class="tab-btn" data-tab="gallery">📸 Best Smile Gallery</button>
+        <button class="tab-btn" data-tab="ring">💍 The Sign</button>
+        <button class="tab-btn" data-tab="favourites">🍟 My Darling's Favourites</button>
+    </div>
+
+    <!-- ======= TAB PANELS ======= -->
+
+    <!-- 1. BIRTHDAY CAKE TAB -->
+    <section class="tab-panel active" id="tab-cake">
+        <div class="panel-inner">
+            <div class="section-header">
+                <h1 class="section-title">Birthday Cake</h1>
+                <p class="section-sub">Happy 18th Birthday, my Queen ✨</p>
+            </div>
+
+            <div class="cake-scene">
+                <div class="cake-glow-ring"></div>
+                <svg id="birthday-cake-3d" viewBox="0 0 360 440" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Shadow -->
+                    <ellipse cx="180" cy="418" rx="145" ry="18" fill="rgba(168,21,70,0.12)"/>
+                    <!-- Plate -->
+                    <ellipse cx="180" cy="398" rx="150" ry="19" fill="#f0d6c8" opacity="0.8"/>
+                    <ellipse cx="180" cy="394" rx="145" ry="14" fill="#e8c9b8" opacity="0.6"/>
+
+                    <!-- BOTTOM TIER -->
+                    <rect x="30" y="280" width="300" height="115" rx="20" fill="url(#tier1Grad)"/>
+                    <!-- Bottom tier side shadow -->
+                    <rect x="30" y="280" width="300" height="30" rx="15" fill="url(#tier1Top)"/>
+                    <!-- Bottom tier frosting drips -->
+                    <path d="M42 296 Q55 310 68 296 Q81 310 94 296 Q107 310 120 296 Q133 310 146 296 Q159 310 172 296 Q185 310 198 296 Q211 310 224 296 Q237 310 250 296 Q263 310 276 296 Q289 310 302 296 Q315 310 328 296" stroke="rgba(255,255,255,0.85)" stroke-width="9" fill="none" stroke-linecap="round"/>
+                    <!-- Bottom tier dots decoration -->
+                    <circle cx="75" cy="340" r="7" fill="#e8839b" opacity="0.8"/>
+                    <circle cx="110" cy="352" r="5" fill="#c97a70" opacity="0.7"/>
+                    <circle cx="145" cy="336" r="7" fill="#f4b183" opacity="0.8"/>
+                    <circle cx="180" cy="348" r="5" fill="#e8839b" opacity="0.7"/>
+                    <circle cx="215" cy="337" r="7" fill="#c9a0dc" opacity="0.8"/>
+                    <circle cx="250" cy="350" r="5" fill="#c97a70" opacity="0.7"/>
+                    <circle cx="285" cy="338" r="7" fill="#e8839b" opacity="0.8"/>
+                    <!-- Bottom ribbon -->
+                    <path d="M35 360 Q90 350 180 360 Q270 370 325 360" stroke="#f06292" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.6"/>
+
+                    <!-- MIDDLE TIER -->
+                    <rect x="68" y="180" width="224" height="106" rx="18" fill="url(#tier2Grad)"/>
+                    <rect x="68" y="180" width="224" height="28" rx="13" fill="url(#tier2Top)"/>
+                    <!-- Middle tier frosting drips -->
+                    <path d="M75 195 Q89 208 103 195 Q117 208 131 195 Q145 208 159 195 Q173 208 187 195 Q201 208 215 195 Q229 208 243 195 Q257 208 271 195 Q285 208 285 195" stroke="rgba(255,255,255,0.88)" stroke-width="8" fill="none" stroke-linecap="round"/>
+                    <!-- Number 18 -->
+                    <text x="180" y="258" text-anchor="middle" font-family="Playfair Display, serif" font-size="46" font-weight="900" fill="#a81546" opacity="0.9">18</text>
+                    <!-- Stars on middle -->
+                    <text x="100" y="242" font-size="16" fill="#fff" opacity="0.75">✦</text>
+                    <text x="258" y="242" font-size="16" fill="#fff" opacity="0.75">✦</text>
+                    <!-- Wavy ribbon -->
+                    <path d="M78 228 Q105 218 132 228 Q159 238 186 228 Q213 218 240 228 Q267 238 282 228" stroke="#e8839b" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.7"/>
+
+                    <!-- TOP TIER -->
+                    <rect x="115" y="90" width="130" height="95" rx="16" fill="url(#tier3Grad)"/>
+                    <rect x="115" y="90" width="130" height="24" rx="12" fill="url(#tier3Top)"/>
+                    <!-- Top tier frosting drips -->
+                    <path d="M120 104 Q132 116 144 104 Q156 116 168 104 Q180 116 192 104 Q204 116 216 104 Q228 116 240 104" stroke="rgba(255,255,255,0.9)" stroke-width="7" fill="none" stroke-linecap="round"/>
+                    <!-- Top tier stars -->
+                    <text x="142" y="150" font-size="13" fill="#fff" opacity="0.85">✧</text>
+                    <text x="172" y="160" font-size="11" fill="#fce4ec" opacity="0.9">✦</text>
+                    <text x="200" y="148" font-size="13" fill="#fff" opacity="0.85">✧</text>
+
+                    <!-- CANDLES — 6 candles across top tier -->
+                    <!-- Candle 1 -->
+                    <rect x="126" y="54" width="12" height="40" rx="6" fill="url(#candle1)"/>
+                    <ellipse cx="132" cy="54" rx="6" ry="3" fill="#fce4ec"/>
+                    <!-- Flame 1 -->
+                    <g class="candle-flame" transform="translate(132,48)">
+                        <ellipse rx="6" ry="10" fill="url(#flameOuter)" class="flame-outer" opacity="0.9"/>
+                        <ellipse rx="3.5" ry="7" fill="url(#flameInner)" class="flame-inner"/>
+                        <ellipse rx="1.5" ry="3.5" fill="#fff" class="flame-core" opacity="0.95"/>
+                        <ellipse rx="5" ry="5" cy="6" fill="rgba(255,200,50,0.18)" class="flame-glow"/>
+                    </g>
+                    <!-- Candle 2 -->
+                    <rect x="145" y="50" width="12" height="44" rx="6" fill="url(#candle2)"/>
+                    <ellipse cx="151" cy="50" rx="6" ry="3" fill="#fff9c4"/>
+                    <g class="candle-flame" transform="translate(151,44)">
+                        <ellipse rx="6" ry="10" fill="url(#flameOuter)" class="flame-outer" opacity="0.9"/>
+                        <ellipse rx="3.5" ry="7" fill="url(#flameInner)" class="flame-inner"/>
+                        <ellipse rx="1.5" ry="3.5" fill="#fff" class="flame-core" opacity="0.95"/>
+                        <ellipse rx="5" ry="5" cy="6" fill="rgba(255,200,50,0.18)" class="flame-glow"/>
+                    </g>
+                    <!-- Candle 3 -->
+                    <rect x="164" y="48" width="12" height="46" rx="6" fill="url(#candle3)"/>
+                    <ellipse cx="170" cy="48" rx="6" ry="3" fill="#f8bbd0"/>
+                    <g class="candle-flame" transform="translate(170,42)">
+                        <ellipse rx="6" ry="10" fill="url(#flameOuter)" class="flame-outer" opacity="0.9"/>
+                        <ellipse rx="3.5" ry="7" fill="url(#flameInner)" class="flame-inner"/>
+                        <ellipse rx="1.5" ry="3.5" fill="#fff" class="flame-core" opacity="0.95"/>
+                        <ellipse rx="5" ry="5" cy="6" fill="rgba(255,200,50,0.18)" class="flame-glow"/>
+                    </g>
+                    <!-- Candle 4 -->
+                    <rect x="183" y="50" width="12" height="44" rx="6" fill="url(#candle4)"/>
+                    <ellipse cx="189" cy="50" rx="6" ry="3" fill="#fff9c4"/>
+                    <g class="candle-flame" transform="translate(189,44)">
+                        <ellipse rx="6" ry="10" fill="url(#flameOuter)" class="flame-outer" opacity="0.9"/>
+                        <ellipse rx="3.5" ry="7" fill="url(#flameInner)" class="flame-inner"/>
+                        <ellipse rx="1.5" ry="3.5" fill="#fff" class="flame-core" opacity="0.95"/>
+                        <ellipse rx="5" ry="5" cy="6" fill="rgba(255,200,50,0.18)" class="flame-glow"/>
+                    </g>
+                    <!-- Candle 5 -->
+                    <rect x="202" y="54" width="12" height="40" rx="6" fill="url(#candle5)"/>
+                    <ellipse cx="208" cy="54" rx="6" ry="3" fill="#fce4ec"/>
+                    <g class="candle-flame" transform="translate(208,48)">
+                        <ellipse rx="6" ry="10" fill="url(#flameOuter)" class="flame-outer" opacity="0.9"/>
+                        <ellipse rx="3.5" ry="7" fill="url(#flameInner)" class="flame-inner"/>
+                        <ellipse rx="1.5" ry="3.5" fill="#fff" class="flame-core" opacity="0.95"/>
+                        <ellipse rx="5" ry="5" cy="6" fill="rgba(255,200,50,0.18)" class="flame-glow"/>
+                    </g>
+                    <!-- Candle 6 -->
+                    <rect x="221" y="56" width="12" height="38" rx="6" fill="url(#candle6)"/>
+                    <ellipse cx="227" cy="56" rx="6" ry="3" fill="#f8bbd0"/>
+                    <g class="candle-flame" transform="translate(227,50)">
+                        <ellipse rx="6" ry="10" fill="url(#flameOuter)" class="flame-outer" opacity="0.9"/>
+                        <ellipse rx="3.5" ry="7" fill="url(#flameInner)" class="flame-inner"/>
+                        <ellipse rx="1.5" ry="3.5" fill="#fff" class="flame-core" opacity="0.95"/>
+                        <ellipse rx="5" ry="5" cy="6" fill="rgba(255,200,50,0.18)" class="flame-glow"/>
+                    </g>
+
+                    <!-- Floating sparkles around cake -->
+                    <text x="20" y="140" font-size="18" class="sparkle-float" style="animation-delay:0s">✨</text>
+                    <text x="322" y="160" font-size="16" class="sparkle-float" style="animation-delay:0.7s">💫</text>
+                    <text x="14" y="320" font-size="14" class="sparkle-float" style="animation-delay:1.4s">🌸</text>
+                    <text x="328" y="300" font-size="14" class="sparkle-float" style="animation-delay:2.1s">🌸</text>
+                    <text x="50" y="80" font-size="12" class="sparkle-float" style="animation-delay:0.4s">✦</text>
+                    <text x="295" y="75" font-size="12" class="sparkle-float" style="animation-delay:1s">✦</text>
+
+                    <defs>
+                        <linearGradient id="tier1Grad" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="#f9c6d0"/>
+                            <stop offset="100%" stop-color="#f4a0b8"/>
+                        </linearGradient>
+                        <linearGradient id="tier1Top" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="#f4a8bb"/>
+                            <stop offset="100%" stop-color="#ee8aaa"/>
+                        </linearGradient>
+                        <linearGradient id="tier2Grad" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="#fce4ec"/>
+                            <stop offset="100%" stop-color="#f8bbd0"/>
+                        </linearGradient>
+                        <linearGradient id="tier2Top" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="#f48fb1"/>
+                            <stop offset="100%" stop-color="#ec6fa8"/>
+                        </linearGradient>
+                        <linearGradient id="tier3Grad" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="#f8bbd0"/>
+                            <stop offset="100%" stop-color="#f48fb1"/>
+                        </linearGradient>
+                        <linearGradient id="tier3Top" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="#f06292"/>
+                            <stop offset="100%" stop-color="#e91e8c"/>
+                        </linearGradient>
+                        <linearGradient id="candle1" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#f4a8bb"/><stop offset="100%" stop-color="#fce4ec"/></linearGradient>
+                        <linearGradient id="candle2" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#fff59d"/><stop offset="100%" stop-color="#ffe082"/></linearGradient>
+                        <linearGradient id="candle3" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#ce93d8"/><stop offset="100%" stop-color="#e1bee7"/></linearGradient>
+                        <linearGradient id="candle4" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#a5d6a7"/><stop offset="100%" stop-color="#c8e6c9"/></linearGradient>
+                        <linearGradient id="candle5" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#80deea"/><stop offset="100%" stop-color="#b2ebf2"/></linearGradient>
+                        <linearGradient id="candle6" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#ffab91"/><stop offset="100%" stop-color="#ffccbc"/></linearGradient>
+                        <radialGradient id="flameOuter" cx="50%" cy="75%">
+                            <stop offset="0%" stop-color="#ffee58"/>
+                            <stop offset="60%" stop-color="#ff9800"/>
+                            <stop offset="100%" stop-color="#ff5722" stop-opacity="0"/>
+                        </radialGradient>
+                        <radialGradient id="flameInner" cx="50%" cy="75%">
+                            <stop offset="0%" stop-color="#fff9c4"/>
+                            <stop offset="100%" stop-color="#ffeb3b" stop-opacity="0.6"/>
+                        </radialGradient>
+                    </defs>
+                </svg>
+
+                <div class="cake-birthday-text">
+                    <div class="hbd-letters">
+                        <span>H</span><span>a</span><span>p</span><span>p</span><span>y</span>
+                        <span class="hbd-space"></span>
+                        <span>1</span><span>8</span><span>t</span><span>h</span>
+                        <span class="hbd-space"></span>
+                        <span>B</span><span>i</span><span>r</span><span>t</span><span>h</span><span>d</span><span>a</span><span>y</span>
+                    </div>
+                    <p class="queen-subtitle">My Queen 👑</p>
+                </div>
+
+                <!-- Confetti trigger button -->
+                <button id="confetti-btn" class="magic-btn">
+                    <span>🎉</span> Celebrate!
+                </button>
+
+                <!-- Hidden "86": leads to the separate heart page, where the letter lives (home page only) -->
+                <div class="secret-86-wrap">
+                    <a href="heart.html" id="secret-86" class="secret-86" aria-label="A hidden page">
+                        <span class="s86-glow" aria-hidden="true"></span>
+                        <span class="s86-face" aria-hidden="true"><span class="s86-num">86</span></span>
+                    </a>
+                    <p class="secret-hint" aria-hidden="true">something is hidden here… 🤍</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. LETTER TAB -->
+    <section class="tab-panel" id="tab-letter">
+        <div class="panel-inner">
+            <div class="section-header">
+                <h1 class="section-title">Letter for You 💌</h1>
+                <p class="section-sub">From my heart to yours</p>
+            </div>
+            <div class="letter-wrapper">
+                <div class="letter-envelope-top">
+                    <div class="envelope-flap">💌</div>
+                </div>
+                <div class="letter-card" dir="rtl" lang="ar">
+                    <div class="letter-rose-deco">🌹</div>
+                    <p class="letter-salutation">ازيك يا جنَة عاملة ايه يروحي</p>
+                    <div class="letter-divider">✦ ✦ ✦</div>
+                    <div class="letter-body">
+                        <p>بما ان النهاية قربت وخلاص هنبعد هنقعد تلت شهور منعرفش حاجة عن بعض وبعدها هتيجي المدرسة وبالكتير هنشوف بعض صدف</p>
+                        <p>بس كنت عاوز اقول ان المية يوم دول كانوا حلوين اوي احنا فهمنا بعض فيهم عرفنا حاجات عن بعض قربنا من بعض حتي لو دا مش رسمي لاننا مدخلناش ريليشن</p>
+                        <p>بس نقدر نقول قربنا وبرضه قعدنا كتير بناخد اليوم كله سوا ف بجد دول كانوا ايام سعيدة بعيد عن الاوقات الوحشة الي عدينا بيها اقدر اقول ان دول من احسن ايام حياتي</p>
+                        <p>وانا بعترف انك مخليتينيش امل منك ولا ازهق ولا اعوز اقفل كلام علطول كنت بحب افضل موجود معاكي واسمعك وانتي من القليلين الي عملوا كدا</p>
+                        <p>وانا طول الوقت كنت بطلع كل طاقتي وبحاول اديكي مشاعر من كل قلبي عشان انا مقتنع انك تستحقي حب بجد وشخص ياخد باله منك ويصونك مش كلام بس وميكونش عنده نوايا وحشة ناحيتك</p>
+                        <p>انا معرفتش اكون الشخص المثالي مية في المية عشان غصب عني اوقات ضايقتك او مفهمتكيش زي ما كان لازم اعمل ف انا بعتذر اني مقدرتش انفذ كلامي كله وابقا شخص بيرفكت ليكي مية في المية</p>
+                        <p>بس بجد انا حزقت كتير وتقبلت حاجات مكنتش بتقبلها ومهما اتعصبت او اتخنقت برضه كنت بكلمك بنفس الطريقة ومش بعلقك مع اني كنت سكيلد فالجوستينج بس عمري ما فكرت اعمل كدا معاكي</p>
+                        <p>وكنت علطول بتناقش معاكي وبحاول اقنعك بوجهة نظري بجد انتي الوحيدة الي تعاملي معاكي كان مختلف وطريقتي معاكي</p>
+                    </div>
+                    <div class="letter-divider">🌸 🌸 🌸</div>
+                    <div class="letter-body">
+                        <p class="letter-heading">وصاياي المقدسة 📜</p>
+                        <p>✦ عايزك تحافظي علي صلاتك علطول ومتكسليش خالص</p>
+                        <p>✦ مش عايزك تفتكريني خالص بوحش او حلو عايزك تركزي فحياتك عشان متضيعيش وقتك فتالتة</p>
+                        <p>✦ البسي نضارتك معظم الوقت عشان نظرك ميضعفش زيادة — انا مهتم اوي بجينات عيالي</p>
+                        <p>✦ متركزيش جامد مع اهلك وحاولي تلاقي السلام النفسي وتفكري بعمق عايزة ايه يكون مستقبلك غير انك تكوني مراتي — عاوزك تفكري فالمستقبل التعليمي</p>
+                        <p class="letter-english">And I hope you find some peace of mind.</p>
+                        <p>✦ وبرضه تجيبي لبس واسع للسكن وتنزلي المطعم بهدوم محتشمة وطرحة مظبوطة عشان لو شوفتك صدفة شعرك طالع او حاجة عبيطة من تشميس شعرك بجد هتجنن</p>
+                        <p>✦ اتمني تاكلي كويس عشان تبقي سبب ازود اوزاني فالجيم عشان اشيلك — الخمسين كيلو سهلة فمعظم التمارين</p>
+                    </div>
+                    <div class="letter-divider">💕</div>
+                    <div class="letter-body">
+                        <p>لو وجودي عندك فالاكونت او صوري او اي حاجة هتخليكي متقدريش تعملي اي وصية من دول شيليني وامسحي حاجاتي وانا بوعدك اني مش هبعتلك او اعمل اي رد فعل يخليكي تفكري فيا وانا متفهم دا</p>
+                        <p>انا مش عاوز اكلمك عن قد ايه انا بحبك بس بجد انا عاوز نتقابل السنة الجاية واحنا ناضجين عقليا ونقدر نتكلم بجد ونخش علاقة سليمة</p>
+                        <p>وانتي من القليلين الي بنيت مستقبلي معاهم ومقتنع ان انا عاوز اكمل بقية حياتي كدا</p>
+                        <p>وبما انك بت اوفر ثينكي الفترة دي عشان الحاجات الي قديمتيهالي تقدري تقوليلي امسح صور او فويسات واي حاجة تخصك عشان تبقي مطمنة اني مش هخون وعدي وكلمتي معاكي واني هطلع حاجة عنك برا — وانا مش متفهم تفكيرك ومش هتضايق لحظة لو قررتي كدا</p>
+                        <p class="letter-closing">وبجد يا نونِتي هتوحشيني اوي وهتفضلي ف قلبي علطول ومش هبص لبنت غيرك لحد ما ناخد فرصتنا وتشوفي نوايايا بجد</p>
+                        <p class="letter-closing">هتوحشيني هتوحشيني هتوحشيني يا احلي بنت فالدنيا 💕</p>
+                        <p class="letter-closing" style="font-size:1.15em; font-weight:700;">ينونِتي الحلوة 🌹</p>
+                    </div>
+                    <div class="letter-signature">
+                        <div class="sig-heart">❤️</div>
+                        <p>مع كل حبي</p>
+                    </div>
+                </div>
+                <div class="letter-petals-deco" aria-hidden="true">
+                    <span>🌸</span><span>🌺</span><span>🌸</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. FLOWERS TAB -->
+    <section class="tab-panel" id="tab-flowers">
+        <div class="panel-inner">
+            <div class="section-header">
+                <h1 class="section-title">ليكي يا مولاتي 🌺</h1>
+                <p class="section-sub">Every bloom as beautiful as you</p>
+            </div>
+            <div class="flowers-gallery">
+                <div class="flower-item">
+                    <div class="flower-frame">
+                        <img src="assets/flowers/pexels-daka-12362056.jpg" alt="Flower for Gannah" loading="lazy"/>
+                        <div class="flower-overlay"><span>🌸</span></div>
+                    </div>
+                </div>
+                <div class="flower-item">
+                    <div class="flower-frame">
+                        <img src="assets/flowers/pexels-heru-dharma-2148751843-36778679.jpg" alt="Flower for Gannah" loading="lazy"/>
+                        <div class="flower-overlay"><span>🌺</span></div>
+                    </div>
+                </div>
+                <div class="flower-item">
+                    <div class="flower-frame">
+                        <img src="assets/flowers/pexels-valentyna-ivanova-1444038-32785885.jpg" alt="Flower for Gannah" loading="lazy"/>
+                        <div class="flower-overlay"><span>🌹</span></div>
+                    </div>
+                </div>
+                <div class="flower-item">
+                    <div class="flower-frame">
+                        <img src="assets/flowers/pexels-lu-106872-783413.jpg" alt="Flower for Gannah" loading="lazy"/>
+                        <div class="flower-overlay"><span>🌷</span></div>
+                    </div>
+                </div>
+                <div class="flower-item">
+                    <div class="flower-frame">
+                        <img src="assets/flowers/pexels-daka-12028905.jpg" alt="Flower for Gannah" loading="lazy"/>
+                        <div class="flower-overlay"><span>🌸</span></div>
+                    </div>
+                </div>
+                <div class="flower-item">
+                    <div class="flower-frame">
+                        <img src="assets/flowers/pexels-daka-17499476.jpg" alt="Flower for Gannah" loading="lazy"/>
+                        <div class="flower-overlay"><span>🌺</span></div>
+                    </div>
+                </div>
+            </div>
+            <p class="flowers-quote">Every flower blooms in its own time — just like you 🌸</p>
+        </div>
+    </section>
+
+    <!-- 4. SONGS TAB -->
+    <section class="tab-panel" id="tab-songs">
+        <div class="panel-inner">
+            <div class="section-header">
+                <h1 class="section-title">Songs That Remind Me of My Queen 🎵</h1>
+                <p class="section-sub">Every note, every word — all for you</p>
+            </div>
+
+            <div class="music-player-full">
+                <!-- Now Playing Display -->
+                <div class="now-playing-card">
+                    <div class="vinyl-disc" id="vinyl-disc">
+                        <div class="vinyl-label">🎵</div>
+                    </div>
+                    <div class="now-playing-info">
+                        <p class="np-label">Now Playing</p>
+                        <h3 class="np-title" id="np-title">Select a song</h3>
+                        <p class="np-artist" id="np-artist">—</p>
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <div class="player-controls">
+                    <button class="ctrl-btn shuffle-btn" id="shuffle-btn" aria-pressed="false" title="Shuffle">🔀</button>
+                    <button class="ctrl-btn" id="prev-btn">⏮</button>
+                    <button class="ctrl-btn play-btn" id="main-play-btn">▶</button>
+                    <button class="ctrl-btn" id="next-btn">⏭</button>
+                </div>
+
+                <!-- Progress bar -->
+                <div class="player-progress">
+                    <span id="cur-time">0:00</span>
+                    <div class="prog-bar" id="prog-bar">
+                        <div class="prog-fill" id="prog-fill"></div>
+                    </div>
+                    <span id="tot-time">0:00</span>
+                </div>
+
+                <!-- Volume -->
+                <div class="player-volume">
+                    <span>🔈</span>
+                    <input type="range" id="vol-slider" min="0" max="1" step="0.05" value="0.7">
+                    <span>🔊</span>
+                </div>
+
+                <!-- Song List -->
+                <div class="song-list">
+                    <div class="song-item" data-src="assets/music/melting.mp3" data-title="Melting" data-artist="♪">
+                        <div class="song-num">1</div>
+                        <div class="song-info">
+                            <span class="song-title-text">Melting</span>
+                            <span class="song-artist-text">♪</span>
+                        </div>
+                        <div class="song-play-icon">▶</div>
+                    </div>
+                    <div class="song-item" data-src="assets/music/transform.mp3" data-title="Transform" data-artist="Daniel Caesar ft. Charlotte Day Wilson">
+                        <div class="song-num">2</div>
+                        <div class="song-info">
+                            <span class="song-title-text">Transform</span>
+                            <span class="song-artist-text">Daniel Caesar ft. Charlotte Day Wilson</span>
+                        </div>
+                        <div class="song-play-icon">▶</div>
+                    </div>
+                    <div class="song-item" data-src="assets/music/song-3.mp3" data-title="Song 3" data-artist="♪">
+                        <div class="song-num">3</div>
+                        <div class="song-info">
+                            <span class="song-title-text">Song 3</span>
+                            <span class="song-artist-text">♪</span>
+                        </div>
+                        <div class="song-play-icon">▶</div>
+                    </div>
+                    <div class="song-item" data-src="assets/music/lovefool.mp3" data-title="Lovefool" data-artist="The Cardigans">
+                        <div class="song-num">4</div>
+                        <div class="song-info">
+                            <span class="song-title-text">Lovefool</span>
+                            <span class="song-artist-text">The Cardigans</span>
+                        </div>
+                        <div class="song-play-icon">▶</div>
+                    </div>
+                    <div class="song-item" data-src="assets/music/kiss-i-was-made-for-lovin-you.mp3" data-title="I Was Made For Lovin' You" data-artist="Kiss">
+                        <div class="song-num">5</div>
+                        <div class="song-info">
+                            <span class="song-title-text">I Was Made For Lovin' You</span>
+                            <span class="song-artist-text">Kiss</span>
+                        </div>
+                        <div class="song-play-icon">▶</div>
+                    </div>
+                    <div class="song-item" data-src="assets/music/frankie-valli-cant-take-my-eyes-off-you.mp3" data-title="Can't Take My Eyes Off You" data-artist="Frankie Valli">
+                        <div class="song-num">6</div>
+                        <div class="song-info">
+                            <span class="song-title-text">Can't Take My Eyes Off You</span>
+                            <span class="song-artist-text">Frankie Valli</span>
+                        </div>
+                        <div class="song-play-icon">▶</div>
+                    </div>
+                    <div class="song-item" data-src="assets/music/never-let-me-go.mp3" data-title="Never Let Me Go" data-artist="Mohamed Abd El-Wahab &amp; Samir El-Eskandarani">
+                        <div class="song-num">7</div>
+                        <div class="song-info">
+                            <span class="song-title-text">Never Let Me Go</span>
+                            <span class="song-artist-text">Mohamed Abd El-Wahab &amp; Samir El-Eskandarani</span>
+                        </div>
+                        <div class="song-play-icon">▶</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. GALLERY TAB -->
+    <section class="tab-panel" id="tab-gallery">
+        <div class="panel-inner">
+            <div class="section-header">
+                <h1 class="section-title">The Best Smile Gallery 📸</h1>
+                <p class="section-sub">The smile that lights up my whole world</p>
+            </div>
+            <div class="smile-gallery-grid">
+                <div class="gallery-card">
+                    <img src="assets/gallery/photo-1.jpg" alt="Gannah as a baby" loading="lazy"/>
+                    <div class="gallery-caption">Even as a baby, that smile 🥹</div>
+                </div>
+                <div class="gallery-card">
+                    <img src="assets/gallery/photo-2.jpg" alt="Gannah" loading="lazy"/>
+                    <div class="gallery-caption">Elegance in every outfit 🖤</div>
+                </div>
+                <div class="gallery-card">
+                    <img src="assets/gallery/photo-3.jpg" alt="Gannah" loading="lazy"/>
+                    <div class="gallery-caption">A rose among the flowers 🌼</div>
+                </div>
+                <div class="gallery-card">
+                    <img src="assets/gallery/photo-4.jpg" alt="Gannah" loading="lazy"/>
+                    <div class="gallery-caption">That smile, with or without the stickers 💜</div>
+                </div>
+                <div class="gallery-card">
+                    <img src="assets/gallery/photo-5.jpg" alt="Gannah" loading="lazy"/>
+                    <div class="gallery-caption">Waving hello to my heart 💛</div>
+                </div>
+                <div class="gallery-card">
+                    <img src="assets/gallery/photo-6.jpg" alt="Gannah" loading="lazy"/>
+                    <div class="gallery-caption">Smiling even on school days 🎒</div>
+                </div>
+                <div class="gallery-card">
+                    <img src="assets/gallery/photo-7.jpg" alt="Gannah" loading="lazy"/>
+                    <div class="gallery-caption">Sunsets are prettier with you 🌅</div>
+                </div>
+                <div class="gallery-card">
+                    <img src="assets/gallery/photo-8.jpg" alt="Gannah" loading="lazy"/>
+                    <div class="gallery-caption">My shatoora in her element 📚💙</div>
+                </div>
+                <div class="gallery-card">
+                    <img src="assets/gallery/photo-9.jpg" alt="Gannah" loading="lazy"/>
+                    <div class="gallery-caption">Cozy girl, cozy heart 🩷</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. RING TAB -->
+    <section class="tab-panel" id="tab-ring">
+        <div class="panel-inner">
+            <div class="section-header">
+                <h1 class="section-title">The Sign That You're Mine 💍</h1>
+                <p class="section-sub">A promise in every glimmer</p>
+            </div>
+            <div class="ring-scene">
+                <div class="ring-glow-bg"></div>
+                <canvas id="ring-canvas"></canvas>
+                <div class="ring-text-below">
+                    <p class="ring-promise">وانتي من القليلين الي بنيت مستقبلي معاهم</p>
+                    <p class="ring-promise-en">You are the one I want to share my future with</p>
+                    <div class="ring-hearts">💕 💍 💕</div>
+                </div>
+
+                <!-- Together counter: counts live from 23 February -->
+                <div class="together-card" id="together-counter" data-start="2026-02-23T00:00:00">
+                    <h2 class="together-title">The Best Days in My Life 💖</h2>
+                    <p class="together-since">Since 23 February</p>
+                    <p class="together-today" id="t-today" hidden></p>
+                    <div class="together-grid">
+                        <div class="t-box"><span class="t-num" id="t-months">0</span><span class="t-label">Months</span></div>
+                        <div class="t-box"><span class="t-num" id="t-days">0</span><span class="t-label">Days</span></div>
+                        <div class="t-box"><span class="t-num" id="t-hours">0</span><span class="t-label">Hours</span></div>
+                        <div class="t-box"><span class="t-num" id="t-minutes">0</span><span class="t-label">Minutes</span></div>
+                        <div class="t-box"><span class="t-num" id="t-seconds">0</span><span class="t-label">Seconds</span></div>
+                    </div>
+                    <p class="together-next" id="t-next"></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. MY DARLING'S FAVOURITES TAB -->
+    <section class="tab-panel" id="tab-favourites">
+        <div class="panel-inner">
+            <div class="section-header">
+                <h1 class="section-title">My Darling's Favourites 🍟</h1>
+                <p class="section-sub">Because you deserve everything you love</p>
+            </div>
+            <div class="favourites-tab-grid">
+
+                <!-- 1. PEPSI CAN -->
+                <div class="fav-card">
+                    <div class="fav-svg-wrap">
+                        <svg viewBox="0 0 160 280" xmlns="http://www.w3.org/2000/svg" class="fav-svg">
+                            <defs>
+                                <linearGradient id="pepsiCan" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" stop-color="#1a1a2e"/>
+                                    <stop offset="30%" stop-color="#16213e"/>
+                                    <stop offset="60%" stop-color="#0f3460"/>
+                                    <stop offset="100%" stop-color="#1a1a2e"/>
+                                </linearGradient>
+                                <linearGradient id="pepsiTop" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" stop-color="#d0d0d0"/>
+                                    <stop offset="50%" stop-color="#a8a8a8"/>
+                                    <stop offset="100%" stop-color="#888"/>
+                                </linearGradient>
+                                <linearGradient id="pepsiShine" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" stop-color="rgba(255,255,255,0)"/>
+                                    <stop offset="30%" stop-color="rgba(255,255,255,0.18)"/>
+                                    <stop offset="50%" stop-color="rgba(255,255,255,0.28)"/>
+                                    <stop offset="70%" stop-color="rgba(255,255,255,0.1)"/>
+                                    <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+                                </linearGradient>
+                                <linearGradient id="pepsiRed" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" stop-color="#c0392b"/>
+                                    <stop offset="50%" stop-color="#e74c3c"/>
+                                    <stop offset="100%" stop-color="#c0392b"/>
+                                </linearGradient>
+                                <linearGradient id="pepsiBlue" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" stop-color="#1a5fa8"/>
+                                    <stop offset="50%" stop-color="#2980b9"/>
+                                    <stop offset="100%" stop-color="#1a5fa8"/>
+                                </linearGradient>
+                                <filter id="pepsiShadow">
+                                    <feDropShadow dx="4" dy="6" stdDeviation="6" flood-color="rgba(0,0,0,0.35)"/>
+                                </filter>
+                                <clipPath id="canClip">
+                                    <rect x="22" y="28" width="116" height="224" rx="8"/>
+                                </clipPath>
+                            </defs>
+                            <!-- Can body -->
+                            <rect x="22" y="28" width="116" height="224" rx="10" fill="url(#pepsiCan)" filter="url(#pepsiShadow)"/>
+                            <!-- Red band -->
+                            <rect x="22" y="155" width="116" height="38" fill="url(#pepsiRed)" clip-path="url(#canClip)"/>
+                            <!-- Blue band -->
+                            <rect x="22" y="193" width="116" height="40" fill="url(#pepsiBlue)" clip-path="url(#canClip)"/>
+                            <!-- White wave divider between red and blue -->
+                            <path d="M22 188 Q45 182 80 190 Q115 198 138 188 L138 198 Q115 208 80 200 Q45 192 22 198 Z" fill="white" clip-path="url(#canClip)"/>
+                            <!-- Shine overlay -->
+                            <rect x="22" y="28" width="116" height="224" rx="10" fill="url(#pepsiShine)" clip-path="url(#canClip)"/>
+                            <!-- Pepsi globe logo -->
+                            <circle cx="80" cy="108" r="36" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+                            <!-- Globe blue half -->
+                            <path d="M80 72 A36 36 0 0 1 116 108 A36 36 0 0 1 80 144 Q58 130 56 108 Q58 86 80 72 Z" fill="#1565c0" opacity="0.85" clip-path="url(#canClip)"/>
+                            <!-- Globe red half -->
+                            <path d="M80 72 A36 36 0 0 0 44 108 A36 36 0 0 0 80 144 Q102 130 104 108 Q102 86 80 72 Z" fill="#c62828" opacity="0.85" clip-path="url(#canClip)"/>
+                            <!-- Globe white wave -->
+                            <path d="M47 97 Q62 82 80 92 Q98 102 113 90" stroke="white" stroke-width="5" fill="none" stroke-linecap="round" clip-path="url(#canClip)"/>
+                            <path d="M46 112 Q62 126 80 116 Q98 106 113 118" stroke="white" stroke-width="5" fill="none" stroke-linecap="round" clip-path="url(#canClip)"/>
+                            <!-- PEPSI text -->
+                            <text x="80" y="172" text-anchor="middle" font-family="Arial Black, sans-serif" font-weight="900" font-size="15" fill="white" letter-spacing="3">PEPSI</text>
+                            <!-- Top rim -->
+                            <ellipse cx="80" cy="28" rx="58" ry="8" fill="url(#pepsiTop)"/>
+                            <!-- Tab -->
+                            <ellipse cx="80" cy="24" rx="30" ry="5" fill="#c0c0c0"/>
+                            <rect x="68" y="18" width="24" height="8" rx="4" fill="#b0b0b0"/>
+                            <ellipse cx="80" cy="18" rx="10" ry="5" fill="#a0a0a0"/>
+                            <!-- Bottom rim -->
+                            <ellipse cx="80" cy="252" rx="58" ry="8" fill="#111"/>
+                        </svg>
+                    </div>
+                    <p class="fav-label">Pepsi 🥤</p>
+                </div>
+
+                <!-- 2. MARSHMALLOWS PACK -->
+                <div class="fav-card">
+                    <div class="fav-svg-wrap">
+                        <svg viewBox="0 0 160 260" xmlns="http://www.w3.org/2000/svg" class="fav-svg">
+                            <defs>
+                                <linearGradient id="mBag2" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#fce4ec"/>
+                                    <stop offset="40%" stop-color="#f8bbd0"/>
+                                    <stop offset="100%" stop-color="#ce93d8"/>
+                                </linearGradient>
+                                <linearGradient id="mShine2" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" stop-color="rgba(255,255,255,0.5)"/>
+                                    <stop offset="60%" stop-color="rgba(255,255,255,0.1)"/>
+                                    <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+                                </linearGradient>
+                                <linearGradient id="mSeal2" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" stop-color="#f9a8c9"/>
+                                    <stop offset="100%" stop-color="#e87ab0"/>
+                                </linearGradient>
+                                <radialGradient id="mw" cx="30%" cy="25%">
+                                    <stop offset="0%" stop-color="#ffffff"/>
+                                    <stop offset="55%" stop-color="#f5f5f5"/>
+                                    <stop offset="100%" stop-color="#e0e0e0"/>
+                                </radialGradient>
+                                <radialGradient id="mp" cx="30%" cy="25%">
+                                    <stop offset="0%" stop-color="#fff0f8"/>
+                                    <stop offset="55%" stop-color="#fce4ec"/>
+                                    <stop offset="100%" stop-color="#f8bbd0"/>
+                                </radialGradient>
+                                <filter id="mBagShadow">
+                                    <feDropShadow dx="3" dy="5" stdDeviation="5" flood-color="rgba(0,0,0,0.2)"/>
+                                </filter>
+                                <filter id="mPieceShadow">
+                                    <feDropShadow dx="1" dy="2" stdDeviation="2" flood-color="rgba(0,0,0,0.12)"/>
+                                </filter>
+                                <clipPath id="mBagClip">
+                                    <path d="M28 22 L132 22 L146 238 L14 238 Z"/>
+                                </clipPath>
+                            </defs>
+                            <!-- Bag body -->
+                            <path d="M28 22 L132 22 L146 238 L14 238 Z" fill="url(#mBag2)" filter="url(#mBagShadow)"/>
+                            <!-- Bag shine -->
+                            <path d="M28 22 L132 22 L138 130 L22 130 Z" fill="url(#mShine2)"/>
+                            <!-- Side fold lines -->
+                            <path d="M42 22 L32 238" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" fill="none"/>
+                            <path d="M118 22 L128 238" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" fill="none"/>
+                            <!-- Top seal -->
+                            <path d="M28 22 Q80 8 132 22 L128 42 Q80 28 32 42 Z" fill="url(#mSeal2)"/>
+                            <!-- Top seal highlight -->
+                            <path d="M34 26 Q80 14 126 26" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" fill="none"/>
+                            <!-- Bottom seal -->
+                            <path d="M14 238 Q80 252 146 238 L142 220 Q80 234 18 220 Z" fill="url(#mSeal2)"/>
+                            <!-- Marshmallow pieces grid (3x2) -->
+                            <rect x="38" y="60" width="30" height="26" rx="9" fill="url(#mw)" filter="url(#mPieceShadow)"/>
+                            <rect x="75" y="60" width="30" height="26" rx="9" fill="url(#mp)" filter="url(#mPieceShadow)"/>
+                            <rect x="38" y="93" width="30" height="26" rx="9" fill="url(#mp)" filter="url(#mPieceShadow)"/>
+                            <rect x="75" y="93" width="30" height="26" rx="9" fill="url(#mw)" filter="url(#mPieceShadow)"/>
+                            <rect x="38" y="126" width="30" height="26" rx="9" fill="url(#mw)" filter="url(#mPieceShadow)"/>
+                            <rect x="75" y="126" width="30" height="26" rx="9" fill="url(#mp)" filter="url(#mPieceShadow)"/>
+                            <!-- Highlights on pieces -->
+                            <ellipse cx="48" cy="65" rx="7" ry="3.5" fill="rgba(255,255,255,0.75)"/>
+                            <ellipse cx="85" cy="65" rx="7" ry="3.5" fill="rgba(255,255,255,0.65)"/>
+                            <ellipse cx="48" cy="98" rx="7" ry="3.5" fill="rgba(255,255,255,0.65)"/>
+                            <ellipse cx="85" cy="98" rx="7" ry="3.5" fill="rgba(255,255,255,0.75)"/>
+                            <ellipse cx="48" cy="131" rx="7" ry="3.5" fill="rgba(255,255,255,0.75)"/>
+                            <ellipse cx="85" cy="131" rx="7" ry="3.5" fill="rgba(255,255,255,0.65)"/>
+                            <!-- Brand text area -->
+                            <rect x="22" y="162" width="116" height="48" rx="6" fill="rgba(255,255,255,0.22)"/>
+                            <text x="80" y="182" text-anchor="middle" font-family="Georgia, serif" font-weight="700" font-size="14" fill="white" letter-spacing="0.5">Marshmallows</text>
+                            <text x="80" y="198" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="rgba(255,255,255,0.9)" letter-spacing="2">SOFT &amp; FLUFFY</text>
+                            <!-- Stars -->
+                            <text x="30" y="178" font-size="10" fill="rgba(255,255,255,0.7)">✦</text>
+                            <text x="120" y="178" font-size="10" fill="rgba(255,255,255,0.7)">✦</text>
+                            <!-- Cloud bites label -->
+                            <text x="80" y="216" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="rgba(255,255,255,0.8)" letter-spacing="0.5">Cloud Bites 🌸</text>
+                        </svg>
+                    </div>
+                    <p class="fav-label">Marshmallows 🍬</p>
+                </div>
+
+                <!-- 3. DORITOS BAG -->
+                <div class="fav-card">
+                    <div class="fav-svg-wrap">
+                        <svg viewBox="0 0 160 260" xmlns="http://www.w3.org/2000/svg" class="fav-svg">
+                            <defs>
+                                <linearGradient id="dBag2" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#b71c1c"/>
+                                    <stop offset="40%" stop-color="#e53935"/>
+                                    <stop offset="100%" stop-color="#7f0000"/>
+                                </linearGradient>
+                                <linearGradient id="dShine2" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" stop-color="rgba(255,255,255,0.3)"/>
+                                    <stop offset="55%" stop-color="rgba(255,255,255,0.08)"/>
+                                    <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+                                </linearGradient>
+                                <linearGradient id="dSeal2" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" stop-color="#f5cba7"/>
+                                    <stop offset="100%" stop-color="#e59866"/>
+                                </linearGradient>
+                                <linearGradient id="dChip2" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#fdd835"/>
+                                    <stop offset="50%" stop-color="#f9a825"/>
+                                    <stop offset="100%" stop-color="#e65100"/>
+                                </linearGradient>
+                                <filter id="dBagShadow2">
+                                    <feDropShadow dx="3" dy="5" stdDeviation="5" flood-color="rgba(0,0,0,0.3)"/>
+                                </filter>
+                                <filter id="chipSh2">
+                                    <feDropShadow dx="1" dy="2" stdDeviation="2" flood-color="rgba(0,0,0,0.3)"/>
+                                </filter>
+                            </defs>
+                            <!-- Bag body -->
+                            <path d="M26 22 L134 22 L148 238 L12 238 Z" fill="url(#dBag2)" filter="url(#dBagShadow2)"/>
+                            <!-- Shine -->
+                            <path d="M26 22 L134 22 L140 132 L20 132 Z" fill="url(#dShine2)"/>
+                            <!-- Side folds -->
+                            <path d="M40 22 L28 238" stroke="rgba(0,0,0,0.1)" stroke-width="1.5" fill="none"/>
+                            <path d="M120 22 L132 238" stroke="rgba(0,0,0,0.1)" stroke-width="1.5" fill="none"/>
+                            <!-- Top seal -->
+                            <path d="M26 22 Q80 8 134 22 L130 42 Q80 28 30 42 Z" fill="url(#dSeal2)"/>
+                            <path d="M32 26 Q80 14 128 26" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" fill="none"/>
+                            <!-- Bottom seal -->
+                            <path d="M12 238 Q80 252 148 238 L144 220 Q80 234 16 220 Z" fill="url(#dSeal2)"/>
+                            <!-- Doritos triangle logo (large, centered) -->
+                            <polygon points="80,52 122,118 38,118" fill="url(#dChip2)" filter="url(#chipSh2)"/>
+                            <!-- Triangle inner lines for depth -->
+                            <polygon points="80,58 117,116 43,116" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+                            <polygon points="80,68 108,112 52,112" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+                            <!-- DORITOS text -->
+                            <text x="80" y="142" text-anchor="middle" font-family="Arial Black, sans-serif" font-weight="900" font-size="18" fill="white" letter-spacing="1.5">DORITOS</text>
+                            <!-- Flavour text -->
+                            <text x="80" y="157" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="8.5" fill="rgba(255,255,255,0.9)" letter-spacing="2">NACHO CHEESE</text>
+                            <!-- Flavour stripe -->
+                            <path d="M18 168 Q80 175 142 168 L144 183 Q80 190 16 183 Z" fill="#f9a825" opacity="0.9"/>
+                            <text x="80" y="179" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="8" fill="white" letter-spacing="1">BOLD FLAVOUR 🌽</text>
+                            <!-- Mini floating chips -->
+                            <polygon points="20,80 30,65 40,80 30,95" fill="url(#dChip2)" opacity="0.7" filter="url(#chipSh2)" transform="rotate(-18,30,80)"/>
+                            <polygon points="125,85 135,70 145,85 135,100" fill="url(#dChip2)" opacity="0.7" filter="url(#chipSh2)" transform="rotate(15,135,85)"/>
+                            <!-- Taste note -->
+                            <text x="80" y="210" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="rgba(255,255,255,0.7)" letter-spacing="0.5">Crispy &amp; Crunchy 🔥</text>
+                        </svg>
+                    </div>
+                    <p class="fav-label">Doritos Nacho Cheese 🌽</p>
+                </div>
+
+            </div>
+            <p class="fav-quote">These are a few of your favourite things 💕</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="site-footer">
+        <canvas id="starfield-canvas"></canvas>
+        <div class="footer-content">
+            <div class="crown-icon">👑</div>
+            <h2 class="footer-text">Love you endlessly, my queen.</h2>
+            <p class="footer-sub">Happy 18th Birthday Gannah 🌸</p>
+        </div>
+    </footer>
+
+</div><!-- /main-content -->
+<!-- Monthiversary toast (appears on the 23rd of every month) -->
+<div id="month-toast" class="month-toast" hidden role="dialog" aria-label="Monthiversary">
+    <div class="mt-card">
+        <div class="mt-emoji">🎉💖🎉</div>
+        <h2 class="mt-title" id="mt-title"></h2>
+        <p class="mt-ar" dir="rtl" lang="ar">كل شهر وانتي حبيبتي يا جنَّة 💕</p>
+        <p class="mt-sub">Every month with you is the best one.</p>
+    </div>
+</div>
+
+<!-- Lightbox -->
+<div id="lightbox" style="display:none;">
+    <button id="lightbox-close">✕</button>
+    <img id="lightbox-img" src="" alt=""/>
+</div>
+
+<!-- Scripts -->
+<script src="libs/three.min.js?v=8"></script>
+<script src="libs/gsap.min.js?v=8"></script>
+<script src="libs/ScrollToPlugin.min.js?v=8"></script>
+<script src="libs/anime.min.js?v=8"></script>
+<script src="libs/confetti.browser.min.js?v=8"></script>
+<script src="app.js?v=11"></script>
+</body>
+</html>
