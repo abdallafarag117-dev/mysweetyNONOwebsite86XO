@@ -242,3 +242,9 @@ body {
 }
 @media (pointer: fine) { html, body, body * { cursor: none !important; } }
 @media (pointer: coarse), (max-width: 768px) { #custom-cursor, #cursor-trail { display: none; } }
+
+/* last line of the hidden letter */
+.sl-content .letter-body p.sl-end {
+    text-align: center; font-weight: 700; color: var(--pink-deep);
+    font-size: clamp(1.1rem, 2.6vw, 1.3rem); margin: 1.4rem 0 0.2rem;
+}

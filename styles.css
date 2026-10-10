@@ -766,6 +766,25 @@ body {
     opacity: 0.85;
 }
 
+/* ===== MINE FAVOURITES (photos under the favourites cards) ===== */
+.mine-section { margin-top: 48px; padding: 0 12px; }
+.mine-title {
+    text-align: center;
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.1rem; color: var(--pink-deep);
+    margin: 0 0 22px;
+}
+.mine-grid {
+    display: flex; justify-content: center; flex-wrap: wrap; gap: 24px;
+}
+.mine-grid .gallery-card { width: 220px; }
+.mine-grid .gallery-card img { height: 290px; }
+@media (max-width: 768px) {
+    .mine-grid { gap: 14px; }
+    .mine-grid .gallery-card { width: 150px; }
+    .mine-grid .gallery-card img { height: 200px; }
+}
+
 /* ===== ONEKO CAT ===== */
 #oneko {
     position: fixed;
